@@ -48,7 +48,7 @@ async function runExample() {
 
     // Load the ONNX model
     const session = new onnx.InferenceSession();
-    await session.loadModel("./DLshillOrNw.onnx");
+    await session.loadModel("./DLshillOrNot.onnx");
 
     // Run inference
     const outputMap = await session.run([tensorX]);
