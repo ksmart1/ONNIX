@@ -53,10 +53,9 @@ async function runExample() {
 
     // Run inference
     const outputMap = await session.run([tensorX]);
-    const outputData = outputMap.get('output1');
+    const outputData = outputMap.get('16');
 
     // Display inference result
-    const outputData = outputMap.get('16');
     const predictions = document.getElementById('inferenceResult');
     inferenceResult.innerHTML = `<hr> Classification: ${outputData.data[0].toFixed(2)}`;
 
