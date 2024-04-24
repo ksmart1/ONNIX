@@ -15,7 +15,6 @@ async function runExample() {
     x[11] = parseFloat(document.getElementById('box12').value);
 
     // Load scaling parameters
-    const response = await fetch('scaling_params.json');
     const scalingParams = {
                             "Record_ID": {
                                 "min": 2.0,
