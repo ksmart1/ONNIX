@@ -48,6 +48,7 @@ async function runExample() {
 
     // Load the ONNX model
     const session = new onnx.InferenceSession();
+    // Changed the model name
     await session.loadModel("./DLshillOrNot.onnx");
 
     // Run inference
