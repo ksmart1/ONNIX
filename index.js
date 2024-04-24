@@ -1,7 +1,7 @@
 
 async function runExample() {
 
-    var x = new Float32Array( 1, 11 )
+    var x = new Float32Array( 1, 13 )
 
     var x = [];
 
@@ -16,12 +16,13 @@ async function runExample() {
      x[8] = document.getElementById('box9').value;
      x[9] = document.getElementById('box10').value;
      x[10] = document.getElementById('box11').value;
+     x[11] = document.getElementById('box12').value;
 
-    let tensorX = new onnx.Tensor(x, 'float32', [1, 11]);
+    let tensorX = new onnx.Tensor(x, 'float32', [1, 13]);
 
     let session = new onnx.InferenceSession();
 
-    await session.loadModel("./DLnet_WineData.onnx");
+    await session.loadModel("./DLshillOrNot.onnx");
     let outputMap = await session.run([tensorX]);
     let outputData = outputMap.get('output1');
 
@@ -30,7 +31,7 @@ async function runExample() {
   predictions.innerHTML = ` <hr> Got an output tensor with values: <br/>
    <table>
      <tr>
-       <td>  Rating of Wine Quality  </td>
+       <td>  Genuine or Shill Bid Classification  </td>
        <td id="td0">  ${outputData.data[0].toFixed(2)}  </td>
      </tr>
   </table>`;
