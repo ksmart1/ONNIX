@@ -77,6 +77,12 @@ async function runExample() {
                                 "mean": 556.9689873417722
                             }
                           };
+    // Define the numerical columns
+    const numerical_cols = ['Record_ID', 'Auction_ID', 'Bidder_Tendency', 'Bidding_Ratio',
+                           'Successive_Outbidding', 'Last_Bidding', 'Auction_Bids',
+                           'Starting_Price_Average', 'Early_Bidding', 'Winning_Ratio',
+                           'Auction_Duration', 'Bidder_ID_encoded'];
+
             
 
     // Scale input features
