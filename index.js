@@ -1,41 +1,46 @@
-
 async function runExample() {
+    // Retrieve input values from text boxes
+    let x = [];
+    x[0] = parseFloat(document.getElementById('box1').value);
+    x[1] = parseFloat(document.getElementById('box2').value);
+    x[2] = parseFloat(document.getElementById('box3').value);
+    x[3] = parseFloat(document.getElementById('box4').value);
+    x[4] = parseFloat(document.getElementById('box5').value);
+    x[5] = parseFloat(document.getElementById('box6').value);
+    x[6] = parseFloat(document.getElementById('box7').value);
+    x[7] = parseFloat(document.getElementById('box8').value);
+    x[8] = parseFloat(document.getElementById('box9').value);
+    x[9] = parseFloat(document.getElementById('box10').value);
+    x[10] = parseFloat(document.getElementById('box11').value);
+    x[11] = parseFloat(document.getElementById('box12').value);
 
-    var x = new Float32Array( 1, 13 )
+    // Load scaling parameters
+    const response = await fetch('scaling_params.json');
+    const scalingParams = await response.json();
 
-    var x = [];
+    // Scale input features
+    for (let i = 0; i < x.length; i++) {
+        const feature = `x${i + 1}`;
+        const min = scalingParams[feature].min;
+        const max = scalingParams[feature].max;
+        const mean = scalingParams[feature].mean;
 
-     x[0] = document.getElementById('box1').value;
-     x[1] = document.getElementById('box2').value;
-     x[2] = document.getElementById('box3').value;
-     x[3] = document.getElementById('box4').value;
-     x[4] = document.getElementById('box5').value;
-     x[5] = document.getElementById('box6').value;
-     x[6] = document.getElementById('box7').value;
-     x[7] = document.getElementById('box8').value;
-     x[8] = document.getElementById('box9').value;
-     x[9] = document.getElementById('box10').value;
-     x[10] = document.getElementById('box11').value;
-     x[11] = document.getElementById('box12').value;
+        // Perform min-max scaling
+        x[i] = (x[i] - mean) / (max - min);
+    }
 
-    let tensorX = new onnx.Tensor(x, 'float32', [1, 13]);
+    // Create tensor from scaled input
+    const tensorX = new onnx.Tensor(x, 'float32', [1, 12]);
 
-    let session = new onnx.InferenceSession();
+    // Load the ONNX model
+    const session = new onnx.InferenceSession();
+    await session.loadModel("./DLshillOrNw.onnx");
 
-    await session.loadModel("./DLshillOrNot.onnx");
-    let outputMap = await session.run([tensorX]);
-    let outputData = outputMap.get('output1');
+    // Run inference
+    const outputMap = await session.run([tensorX]);
+    const outputData = outputMap.get('output1');
 
-   let predictions = document.getElementById('predictions');
-
-  predictions.innerHTML = ` <hr> Got an output tensor with values: <br/>
-   <table>
-     <tr>
-       <td>  Genuine or Shill Bid Classification  </td>
-       <td id="td0">  ${outputData.data[0].toFixed(2)}  </td>
-     </tr>
-  </table>`;
-    
-
-
+    // Display inference result
+    const predictions = document.getElementById('predictions');
+    predictions.innerHTML = `<hr> Classification: ${outputData.data[0].toFixed(2)}`;
 }
