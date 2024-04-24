@@ -21,13 +21,16 @@ async function runExample() {
     // Scale input features
     for (let i = 0; i < x.length; i++) {
         const feature = `x${i + 1}`;
-        const min = scalingParams[feature].min;
+        console.log("Feature:", feature); // Log the feature name
+        console.log("Scaling Params:", scalingParams); // Log the scalingParams object
+        const min = scalingParams[feature].min; // This line is causing the error
         const max = scalingParams[feature].max;
         const mean = scalingParams[feature].mean;
 
-        // Perform min-max scaling
-        x[i] = (x[i] - mean) / (max - min);
-    }
+    // Perform min-max scaling
+    x[i] = (x[i] - mean) / (max - min);
+}
+
 
     // Create tensor from scaled input
     const tensorX = new onnx.Tensor(x, 'float32', [1, 12]);
