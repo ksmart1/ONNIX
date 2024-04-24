@@ -16,86 +16,30 @@ async function runExample() {
 
     // Load scaling parameters
     const scalingParams = {
-                            "Record_ID": {
-                                "min": 2.0,
-                                "max": 15144.0,
-                                "mean": 7537.02167721519
-                            },
-                            "Auction_ID": {
-                                "min": 5.0,
-                                "max": 2538.0,
-                                "mean": 1241.4688291139241
-                            },
-                            "Bidder_Tendency": {
-                                "min": 0.0,
-                                "max": 1.0,
-                                "mean": 0.14253164558164555
-                            },
-                            "Bidding_Ratio": {
-                                "min": 0.011764706,
-                                "max": 1.0,
-                                "mean": 0.12762658230696203
-                            },
-                            "Successive_Outbidding": {
-                                "min": 0.0,
-                                "max": 1.0,
-                                "mean": 0.10379746835443038
-                            },
-                            "Last_Bidding": {
-                                "min": 0.0,
-                                "max": 0.999900463,
-                                "mean": 0.46319265099414564
-                            },
-                            "Auction_Bids": {
-                                "min": 0.0,
-                                "max": 0.788235294,
-                                "mean": 0.23164239491455701
-                            },
-                            "Starting_Price_Average": {
-                                "min": 0.0,
-                                "max": 0.999935281,
-                                "mean": 0.4727389408066455
-                            },
-                            "Early_Bidding": {
-                                "min": 0.0,
-                                "max": 0.999900463,
-                                "mean": 0.4307506928971044
-                            },
-                            "Winning_Ratio": {
-                                "min": 0.0,
-                                "max": 1.0,
-                                "mean": 0.36768389861598105
-                            },
-                            "Auction_Duration": {
-                                "min": 1.0,
-                                "max": 10.0,
-                                "mean": 4.61503164556962
-                            },
-                            "Bidder_ID_encoded": {
-                                "min": 0.0,
-                                "max": 1053.0,
-                                "mean": 556.9689873417722
-                            }
-                          };
-    // Define the numerical columns
-    const numerical_cols = ['Record_ID', 'Auction_ID', 'Bidder_Tendency', 'Bidding_Ratio', 'Successive_Outbidding', 'Last_Bidding', 'Auction_Bids', 'Starting_Price_Average', 'Early_Bidding', 'Winning_Ratio', 'Auction_Duration', 'Bidder_ID_encoded'];
-
-            
+        "Record_ID": {"min": 2.0, "max": 15144.0, "mean": 7537.02167721519},
+        "Auction_ID": {"min": 5.0, "max": 2538.0, "mean": 1241.4688291139241},
+        "Bidder_Tendency": {"min": 0.0, "max": 1.0, "mean": 0.14253164558164555},
+        "Bidding_Ratio": {"min": 0.011764706, "max": 1.0, "mean": 0.12762658230696203},
+        "Successive_Outbidding": {"min": 0.0, "max": 1.0, "mean": 0.10379746835443038},
+        "Last_Bidding": {"min": 0.0, "max": 0.999900463, "mean": 0.46319265099414564},
+        "Auction_Bids": {"min": 0.0, "max": 0.788235294, "mean": 0.23164239491455701},
+        "Starting_Price_Average": {"min": 0.0, "max": 0.999935281, "mean": 0.4727389408066455},
+        "Early_Bidding": {"min": 0.0, "max": 0.999900463, "mean": 0.4307506928971044},
+        "Winning_Ratio": {"min": 0.0, "max": 1.0, "mean": 0.36768389861598105},
+        "Auction_Duration": {"min": 1.0, "max": 10.0, "mean": 4.61503164556962},
+        "Bidder_ID_encoded": {"min": 0.0, "max": 1053.0, "mean": 556.9689873417722}
+    };
 
     // Scale input features
     for (let i = 0; i < x.length; i++) {
         const feature = numerical_cols[i];
-        console.log(x);
-        console.log("Feature:", feature); // Log the feature name
-        console.log("Scaling Params:", scalingParams); // Log the scalingParams object
-        const min = scalingParams[feature].min; // This line is causing the error
+        const min = scalingParams[feature].min;
         const max = scalingParams[feature].max;
         const mean = scalingParams[feature].mean;
 
-    // Perform min-max scaling
-    x[i] = (x[i] - mean) / (max - min);
-}
-
+        // Perform min-max scaling
+        x[i] = (x[i] - mean) / (max - min);
+    }
 
     // Create tensor from scaled input
     const tensorX = new onnx.Tensor(x, 'float32', [1, 12]);
