@@ -20,7 +20,7 @@ async function runExample() {
 
     // Scale input features
     for (let i = 0; i < x.length; i++) {
-        const feature = `x${i + 1}`;
+        const feature = numerical_cols[i];
         console.log("Feature:", feature); // Log the feature name
         console.log("Scaling Params:", scalingParams); // Log the scalingParams object
         const min = scalingParams[feature].min; // This line is causing the error
