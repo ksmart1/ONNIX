@@ -57,7 +57,7 @@ async function runExample() {
     const outputData = outputMap.get('16');
 
     // Display inference result
-    const predictions = document.getElementById('inferenceResult');
+    const predictions = document.getElementById('predictions');
     console.log(predictions);
     predictions.innerHTML = `Classification: ${outputData.data[0].toFixed(2)}`;
 
