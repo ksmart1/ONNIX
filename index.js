@@ -59,6 +59,6 @@ async function runExample() {
     // Display inference result
     const predictions = document.getElementById('inferenceResult');
     console.log(predictions);
-    inferenceResult.innerHTML = `<hr> Classification: ${outputData.data[0].toFixed(2)}`;
+    predictions.innerHTML = `<hr> Classification: ${outputData.data[0].toFixed(2)}`;
 
 }
