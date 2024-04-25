@@ -45,6 +45,7 @@ async function runExample() {
 
     // Create tensor from scaled input
     const tensorX = new onnx.Tensor(x, 'float32', [1, 12]);
+    console.log("TensonX: " + tensorX);
 
     // Load the ONNX model
     const session = new onnx.InferenceSession();
@@ -57,6 +58,7 @@ async function runExample() {
 
     // Display inference result
     const predictions = document.getElementById('inferenceResult');
+    console.log(predictions);
     inferenceResult.innerHTML = `<hr> Classification: ${outputData.data[0].toFixed(2)}`;
 
 }
