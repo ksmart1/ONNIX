@@ -12,14 +12,10 @@ async function runExample() {
     x[6] = parseFloat(document.getElementById('box7').value);
     x[7] = parseFloat(document.getElementById('box8').value);
     x[8] = parseFloat(document.getElementById('box9').value);
-    x[9] = parseFloat(document.getElementById('box10').value);
-    x[10] = parseFloat(document.getElementById('box11').value);
-    x[11] = parseFloat(document.getElementById('box12').value);
+   
 
     // Load scaling parameters
     const scalingParams = {
-        "Record_ID": {"min": 2.0, "max": 15144.0, "mean": 7537.02167721519},
-        "Auction_ID": {"min": 5.0, "max": 2538.0, "mean": 1241.4688291139241},
         "Bidder_Tendency": {"min": 0.0, "max": 1.0, "mean": 0.14253164558164555},
         "Bidding_Ratio": {"min": 0.011764706, "max": 1.0, "mean": 0.12762658230696203},
         "Successive_Outbidding": {"min": 0.0, "max": 1.0, "mean": 0.10379746835443038},
@@ -28,7 +24,6 @@ async function runExample() {
         "Starting_Price_Average": {"min": 0.0, "max": 0.999935281, "mean": 0.4727389408066455},
         "Early_Bidding": {"min": 0.0, "max": 0.999900463, "mean": 0.4307506928971044},
         "Winning_Ratio": {"min": 0.0, "max": 1.0, "mean": 0.36768389861598105},
-        "Auction_Duration": {"min": 1.0, "max": 10.0, "mean": 4.61503164556962},
         "Bidder_ID_encoded": {"min": 0.0, "max": 1053.0, "mean": 556.9689873417722}
     };
 
