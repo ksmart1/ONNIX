@@ -41,6 +41,7 @@ async function runExample() {
 
         // Perform min-max scaling
         x[i] = (x[i] - mean) / (max - min);
+        console.log(x[i])
     }
 
     // Create tensor from scaled input
