@@ -40,7 +40,7 @@ async function runExample() {
     }
 
     // Create tensor from scaled input
-    const tensorX = new onnx.Tensor(x, 'float32', [1, 12]);
+    const tensorX = new onnx.Tensor(x, 'float32', [1, 9]);
     console.log("TensonX: " + tensorX);
 
     // Load the ONNX model
